@@ -1,0 +1,31 @@
+[project]
+# Imported as `shared`; distributed as ai-gm-shared, so it can never be
+# mistaken for an unrelated package of the same name on an index.
+name = "ai-gm-shared"
+version = "1.0.0"
+description = "The ai_gm platform's Python package: token checks, the service token, errors, roles, leases, the access-log filter"
+readme = "README.md"
+requires-python = ">=3.13"
+# Floors, not pins: a library. Each service's uv.lock pins the versions it runs.
+dependencies = [
+    "fastapi>=0.165.0",
+    "httpx2>=2.16.2",
+    "pyjwt>=2.15.1",
+    "pymongo>=4.20.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==9.2.0",
+    "motor==3.7.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.10,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "shared"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
